@@ -12,7 +12,11 @@ export class UsersService {
     // Check if the user already exists
     const existingUser = await this.userModel.findOne({ email });
     if (existingUser) {
+      // If the user already exists, throw an error
+      console.log('User already exists');
       throw new Error('User already exists');
+
+
     }
 
     // Hash the password

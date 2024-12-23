@@ -4,6 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
+import { MiddlewareConsumer } from '@nestjs/common/interfaces';
+import * as cors from 'cors';
 
 @Module({
   imports: [
@@ -17,4 +19,14 @@ import { UsersModule } from './users/users.module';
     UsersModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+    configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(cors({
+        origin: 'http://localhost:8080', // Update with your frontend's URL
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+      }))
+      .forRoutes('*');
+  }
+}
