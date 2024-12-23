@@ -5,7 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
     // Enable CORS
   app.enableCors({
-    origin: 'http://localhost:8080', // Update with your frontend's URL
+    origin: 'https://tasktrackify.netlify.app/', // Update with your frontend's URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
